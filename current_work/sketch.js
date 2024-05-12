@@ -39,6 +39,8 @@ function vecLine(a, b, v) {
 function setup() {
   createCanvas(640, 640);
   G = createVector(0, 50);
+  gravity = createSlider(10, 100, 50, 1);
+  gravity.position(10, 10);
   cols = width / cSize;
   rows = height / cSize;
   let num_rows = Math.ceil(height / (3 * H) + 2);
@@ -60,6 +62,7 @@ function draw() {
   background(0, 0, 0);
   stroke(0);
   fill(255);
+  G = createVector(0, gravity.value());
   text("FPS:" + frameRate(), 20, 20);
   text(
     // "Press R to toggle Render and Space to add particles. You can drag stuff too",
@@ -67,6 +70,7 @@ function draw() {
     20,
     40
   );
+  text("User the slider change gravity in the canvas", 20, 55);
   densityPressure();
   forces();
   integrate();
