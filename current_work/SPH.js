@@ -141,9 +141,9 @@ function integrate() {
           p.v.x *= BOUND_DAMP;
           p.pos.x = EPS;
         }
-        if (!meta) {
-          p.show();
-        }
+        // if (!meta) {
+        p.show();
+        // }
         new_particles[Math.floor(p.pos.y / (3 * H)) + 1][
           Math.floor(p.pos.x / (3 * H)) + 1
         ].push(p);
