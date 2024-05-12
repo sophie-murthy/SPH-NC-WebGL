@@ -39,6 +39,24 @@ class Particle {
   }
 }
 
+class MouseParticle {
+  constructor(x, y) {
+    this.pos = createVector(x, y);
+    this.v = createVector();
+    this.rho = 0;
+    this.f = createVector();
+    this.p = 0;
+    this.h = 40;
+    this.radius =  20;
+    this.scu = createVector();
+  }
+  show() {
+    fill(0, 0, 0);
+    circle(this.pos.x, this.pos.y, this.radius);
+  }
+}
+
+
 function densityPressure() {
   num_row = particles.length;
   num_col = particles[0].length;
