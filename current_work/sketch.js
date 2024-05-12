@@ -28,15 +28,6 @@ function LERP(value1, value2, amount) {
   return value1 + (value2 - value1) * amount;
 }
 function vecLine(a, b, v) {
-  // if (a.y > height/1.5 && b.y > height/1.5){
-  //   fill(0,0,255)
-  //   beginShape()
-  //   vertex(a.x,a.y)
-  //   vertex(b.x,b.y)
-  //   vertex(b.x,height)
-  //   vertex(a.x,height)
-  //   endShape(CLOSE)
-  // }
   if (v != undefined) {
     vertex(a.x, a.y);
     vertex(b.x, b.y);
