@@ -357,7 +357,7 @@ function mouseReleased() {
   lockChamber = [];
 }
 function doubleClicked() {
-  flet radius = H * 2;  // Define the radius of the circle
+  let radius = H * 2;  // Define the radius of the circle
   for (let angle = 0; angle < 360; angle += 360 / 50) {  // Increment angle to form a circle
     let x = mouseX + radius * cos(radians(angle));  // Calculate x position
     let y = mouseY + radius * sin(radians(angle));  // Calculate y position
