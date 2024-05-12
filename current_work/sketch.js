@@ -39,29 +39,27 @@ function vecLine(a, b, v) {
 function setup() {
   createCanvas(640, 640);
   G = createVector(0, 50);
-  let sliderContainer = createDiv('');
-  sliderContainer.id('slider-container');
-
+  let sliderContainer = createDiv("");
+  sliderContainer.id("slider-container");
 
   // Create sliders
-  let gravityLabel = createP('Gravity');
-  gravityLabel.parent(sliderContainer)
+  let gravityLabel = createP("Gravity");
+  gravityLabel.parent(sliderContainer);
   gravity = createSlider(10, 100, 50, 1);
   gravity.parent(sliderContainer);
-  gravity.id('gravity-slider');
+  gravity.id("gravity-slider");
 
-  let gasConstLabel = createP('Gas Constant');
-  gasConstLabel.parent(sliderContainer)
+  let gasConstLabel = createP("Gas Constant");
+  gasConstLabel.parent(sliderContainer);
   gasConstSlider = createSlider(200, 3000, 2000, 10);
   gasConstSlider.parent(sliderContainer);
-  gasConstSlider.id('gasConst-slider');
+  gasConstSlider.id("gasConst-slider");
 
-  let viscLabel = createP('Visc Constant');
-  viscLabel.parent(sliderContainer)
+  let viscLabel = createP("Visc Constant");
+  viscLabel.parent(sliderContainer);
   viscSlider = createSlider(1, 1000, 100, 1);
   viscSlider.parent(sliderContainer);
-  viscSlider.id('visc-slider');
-
+  viscSlider.id("visc-slider");
 
   cols = width / cSize;
   rows = height / cSize;
@@ -335,6 +333,8 @@ function draw() {
 }
 
 function mousePressed() {
+  // create a particle(invislble) at the mouse place
+
   mouseDown = true;
   lockChamber = [];
 
@@ -352,21 +352,17 @@ function mousePressed() {
   }
 }
 function mouseReleased() {
+  // delete the particle
   mouseDown = false;
   lockChamber = [];
 }
-function keyPressed() {
-  if (keyCode == 32) {
-    for (let y = mouseY - H * 2; y < mouseY + H * 2; y += H) {
-      for (let x = mouseX - H * 2; x < mouseX + H * 2; x += H) {
-        let temp = new Particle(x, y);
-        row = Math.floor(y / (3 * H)) + 1;
-        col = Math.floor(x / (3 * H)) + 1;
-        particles[row][col].push(temp);
-      }
+function doubleClicked() {
+  for (let y = mouseY - H * 2; y < mouseY + H * 2; y += H) {
+    for (let x = mouseX - H * 2; x < mouseX + H * 2; x += H) {
+      let temp = new Particle(x, y);
+      row = Math.floor(y / (3 * H)) + 1;
+      col = Math.floor(x / (3 * H)) + 1;
+      particles[row][col].push(temp);
     }
   }
-  // if (keyCode == 82) {
-  //   meta = !meta;
-  // }
 }
