@@ -57,9 +57,9 @@ function setup() {
 }
 
 function draw() {
-  background(232);
+  background(0, 0, 0);
   stroke(0);
-  fill(0);
+  fill(255);
   text("FPS:" + frameRate(), 20, 20);
   text(
     // "Press R to toggle Render and Space to add particles. You can drag stuff too",

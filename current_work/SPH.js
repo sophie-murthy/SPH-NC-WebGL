@@ -34,6 +34,7 @@ class Particle {
     this.scu = createVector();
   }
   show() {
+    fill(255, 255, 255);
     circle(this.pos.x, this.pos.y, H / 2);
   }
 }
