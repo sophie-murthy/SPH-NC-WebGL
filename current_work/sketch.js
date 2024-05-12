@@ -39,12 +39,30 @@ function vecLine(a, b, v) {
 function setup() {
   createCanvas(640, 640);
   G = createVector(0, 50);
+  let sliderContainer = createDiv('');
+  sliderContainer.id('slider-container');
+
+
+  // Create sliders
+  let gravityLabel = createP('Gravity');
+  gravityLabel.parent(sliderContainer)
   gravity = createSlider(10, 100, 50, 1);
-  gravity.position(10, 10);
+  gravity.parent(sliderContainer);
+  gravity.id('gravity-slider');
+
+  let gasConstLabel = createP('Gas Constant');
+  gasConstLabel.parent(sliderContainer)
   gasConstSlider = createSlider(200, 3000, 2000, 10);
-  gasConstSlider.position(20, 40);
+  gasConstSlider.parent(sliderContainer);
+  gasConstSlider.id('gasConst-slider');
+
+  let viscLabel = createP('Visc Constant');
+  viscLabel.parent(sliderContainer)
   viscSlider = createSlider(1, 1000, 100, 1);
-  viscSlider.position(20, 80);
+  viscSlider.parent(sliderContainer);
+  viscSlider.id('visc-slider');
+
+
   cols = width / cSize;
   rows = height / cSize;
   let num_rows = Math.ceil(height / (3 * H) + 2);
@@ -70,15 +88,15 @@ function draw() {
   GAS_CONST = gasConstSlider.value();
   VISC = viscSlider.value();
   text("FPS:" + frameRate(), 20, 20);
-  text(
-    // "Press R to toggle Render and Space to add particles. You can drag stuff too",
-    "Press Space to add more particles in the mouse's postion, and you can use mouse drag particles",
-    20,
-    40
-  );
-  text("User the slider change gravity in the canvas", 20, 55);
-  text("User the second slider change Gas Constant in the canvas", 20, 60);
-  text("User the second slider change Visc in the canvas", 20, 75);
+  // text(
+  //   // "Press R to toggle Render and Space to add particles. You can drag stuff too",
+  //   "Press Space to add more particles in the mouse's postion, and you can use mouse drag particles",
+  //   20,
+  //   40
+  // );
+  // text("User the slider change gravity in the canvas", 20, 60);
+  // text("User the second slider change Gas Constant in the canvas", 20, 80);
+  // text("User the second slider change Visc in the canvas", 20, 100);
   densityPressure();
   forces();
   integrate();

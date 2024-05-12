@@ -9,6 +9,9 @@ html, body {
     height: 100%;
     width: 100%;
 }
+body{
+    position: relative;
+}
 
 /* Body styling */
 body {
@@ -32,12 +35,51 @@ header {
 
 /* Main content styling */
 main {
-    padding: 20px;
+    /* padding: 20px; */
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    /* box-shadow: 0 4px 8px rgba(0,0,0,0.1); */
     width: 90%;
     max-width: 640px;
     margin-top: 20px; /* Adds spacing between the header and the main content */
     text-align: center;
 }
+
+#slider-container{
+    display: flex;
+    background-color: black;
+    color: white;
+    flex-direction: column;
+    position: absolute;
+    left: 0;
+    margin: 5rem;
+    border: 1px black solid;
+    padding: 0.4rem;
+}
+#gravity-slider{
+    margin-bottom: 1rem;
+}
+#gasConst-slider{
+    margin-bottom: 1rem;
+}
+
+#visc-slider{
+    margin-bottom: 1rem;
+}
+/* #gravity-slider {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+  }
+  
+  #gas-const-slider {
+    position: absolute;
+    top: 60px;
+    left: 20px;
+  }
+  
+  #visc-slider {
+    position: absolute;
+    top: 100px;
+    left: 20px;
+  } */
