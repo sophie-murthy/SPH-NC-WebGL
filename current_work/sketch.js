@@ -357,12 +357,15 @@ function mouseReleased() {
   lockChamber = [];
 }
 function doubleClicked() {
-  for (let y = mouseY - H * 2; y < mouseY + H * 2; y += H) {
-    for (let x = mouseX - H * 2; x < mouseX + H * 2; x += H) {
-      let temp = new Particle(x, y);
-      row = Math.floor(y / (3 * H)) + 1;
-      col = Math.floor(x / (3 * H)) + 1;
-      particles[row][col].push(temp);
+  flet radius = H * 2;  // Define the radius of the circle
+  for (let angle = 0; angle < 360; angle += 360 / 50) {  // Increment angle to form a circle
+    let x = mouseX + radius * cos(radians(angle));  // Calculate x position
+    let y = mouseY + radius * sin(radians(angle));  // Calculate y position
+    let temp = new Particle(x, y);
+    let row = Math.floor(y / (3 * H)) + 1;
+    let col = Math.floor(x / (3 * H)) + 1;
+    if (row >= 0 && col >= 0 && row < particles.length && col < particles[row].length) {
+      particles[row][col].push(temp);  // Add particle if it's within the grid bounds
     }
   }
 }
