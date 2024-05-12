@@ -41,6 +41,8 @@ function setup() {
   G = createVector(0, 50);
   gravity = createSlider(10, 100, 50, 1);
   gravity.position(10, 10);
+  gasConstSlider = createSlider(200, 3000, 2000, 10);
+  gasConstSlider.position(20, 80);
   cols = width / cSize;
   rows = height / cSize;
   let num_rows = Math.ceil(height / (3 * H) + 2);
@@ -63,6 +65,7 @@ function draw() {
   stroke(0);
   fill(255);
   G = createVector(0, gravity.value());
+  GAS_CONST = gasConstSlider.value();
   text("FPS:" + frameRate(), 20, 20);
   text(
     // "Press R to toggle Render and Space to add particles. You can drag stuff too",
