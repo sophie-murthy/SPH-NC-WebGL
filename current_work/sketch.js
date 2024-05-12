@@ -42,7 +42,9 @@ function setup() {
   gravity = createSlider(10, 100, 50, 1);
   gravity.position(10, 10);
   gasConstSlider = createSlider(200, 3000, 2000, 10);
-  gasConstSlider.position(20, 80);
+  gasConstSlider.position(20, 40);
+  viscSlider = createSlider(1, 1000, 100, 1);
+  viscSlider.position(20, 80);
   cols = width / cSize;
   rows = height / cSize;
   let num_rows = Math.ceil(height / (3 * H) + 2);
@@ -66,6 +68,7 @@ function draw() {
   fill(255);
   G = createVector(0, gravity.value());
   GAS_CONST = gasConstSlider.value();
+  VISC = viscSlider.value();
   text("FPS:" + frameRate(), 20, 20);
   text(
     // "Press R to toggle Render and Space to add particles. You can drag stuff too",
@@ -74,6 +77,8 @@ function draw() {
     40
   );
   text("User the slider change gravity in the canvas", 20, 55);
+  text("User the second slider change Gas Constant in the canvas", 20, 60);
+  text("User the second slider change Visc in the canvas", 20, 75);
   densityPressure();
   forces();
   integrate();
