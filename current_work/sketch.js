@@ -2,7 +2,6 @@ let particles;
 let cSize = 8;
 let cols;
 let rows;
-let useLerp = true;
 let mouseDown = false;
 // let meta = false;
 let lockChamber = [];
@@ -16,24 +15,6 @@ function create3DArray(dim1, dim2) {
     }
   }
   return array;
-}
-
-function cornersBinaryToDecimal(corner0, corner1, corner2, corner3) {
-  return corner0 * 8 + corner1 * 4 + corner2 * 2 + corner3 * 1;
-}
-
-function LERP(value1, value2, amount) {
-  amount = amount < 0 ? 0 : amount;
-  amount = amount > 1 ? 1 : amount;
-  return value1 + (value2 - value1) * amount;
-}
-function vecLine(a, b, v) {
-  if (v != undefined) {
-    vertex(a.x, a.y);
-    vertex(b.x, b.y);
-  } else {
-    line(a.x, a.y, b.x, b.y);
-  }
 }
 
 function setup() {
