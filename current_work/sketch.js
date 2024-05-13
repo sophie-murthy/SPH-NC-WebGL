@@ -109,7 +109,7 @@ function mousePressed() {
   console.log(particles[row][col]);
 
   lockChamber.push(temp);
-
+}
 
 
 function mouseDragged() {
