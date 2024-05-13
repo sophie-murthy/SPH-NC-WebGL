@@ -58,18 +58,17 @@ class MouseParticle {
 
 
 function densityPressure() {
-  num_row = particles.length;
-  num_col = particles[0].length;
-  for (let i = 1; i < num_row - 1; i++) {
-    for (let j = 1; j < num_col - 1; j++) {
-      num_particles = particles[i][j].length;
-      for (let k = 0; k < num_particles; k++) {
+  column = particles[0].length;
+  for (let i = 1; i < particles.length - 1; i++) {
+    for (let j = 1; j < column - 1; j++) {
+      particle_count = particles[i][j].length;
+      for (let k = 0; k < particle_count; k++) {
         let p = particles[i][j][k];
         p.rho = 0;
         for (direction of checkDirection) {
-          let new_i = i + direction[0];
-          let new_j = j + direction[1];
-          for (let p_check of particles[new_i][new_j]) {
+          let i_recent = i + direction[0];
+          let j_recent = j + direction[1];
+          for (let p_check of particles[i_recent][j_recent]) {
             let distance_vector = p5.Vector.sub(p_check.pos, p.pos);
             let distance = distance_vector.magSq();
             if (distance < HSQ) {
@@ -84,21 +83,20 @@ function densityPressure() {
 }
 
 function forces() {
-  num_row = particles.length;
-  num_col = particles[0].length;
-  for (let i = 1; i < num_row - 1; i++) {
-    for (let j = 1; j < num_col - 1; j++) {
-      num_particles = particles[i][j].length;
-      for (let k = 0; k < num_particles; k++) {
+  column = particles[0].length;
+  for (let i = 1; i < particles.length - 1; i++) {
+    for (let j = 1; j < column - 1; j++) {
+      particle_count = particles[i][j].length;
+      for (let k = 0; k < particle_count; k++) {
         let p = particles[i][j][k];
 
-        let fpress = createVector();
-        let fvisc = createVector();
+        let force_press = createVector();
+        let force_visc = createVector();
 
         for (direction of checkDirection) {
-          let new_i = i + direction[0];
-          let new_j = j + direction[1];
-          for (let p_check of particles[new_i][new_j]) {
+          let i_recent = i + direction[0];
+          let j_recent = j + direction[1];
+          for (let p_check of particles[i_recent][j_recent]) {
             if (p_check == p) {
               continue;
             }
@@ -115,15 +113,17 @@ function forces() {
                   (2 * p_check.rho)
               );
               let con = (VISC * MASS * VISC_LAP * (H - distance)) / p_check.rho;
-              fpress.add(a);
-              fvisc.add(p5.Vector.mult(p5.Vector.sub(p_check.v, p.v), con));
+              force_press.add(a);
+              force_visc.add(p5.Vector.mult(p5.Vector.sub(p_check.v, p.v), con));
             }
           }
         }
         let fgrav = p5.Vector.mult(G, MASS / p.rho);
+
         let fo = createVector();
-        fo.add(fpress);
-        fo.add(fvisc);
+
+        fo.add(force_press);
+        fo.add(force_visc);
         fo.add(fgrav);
         p.f = fo;
       }
@@ -132,18 +132,21 @@ function forces() {
 }
 
 function integrate() {
-  num_row = particles.length;
-  num_col = particles[0].length;
-  let num_rows = Math.ceil(height / (3 * H) + 2);
-  let num_cols = Math.ceil(width / (3 * H) + 2);
-  new_particles = create3DArray(num_rows, num_cols);
-  for (let i = 1; i < num_row - 1; i++) {
-    for (let j = 1; j < num_col - 1; j++) {
-      num_particles = particles[i][j].length;
-      for (let k = 0; k < num_particles; k++) {
+  column = particles[0].length;
+  let total_rows = Math.ceil(height / (3 * H) + 2);
+  let total_columns = Math.ceil(width / (3 * H) + 2);
+
+  new_particles = create3DArray(total_rows, total_columns);
+
+  for (let i = 1; i < particles.length - 1; i++) {
+    for (let j = 1; j < column - 1; j++) {
+      particle_count = particles[i][j].length;
+
+      for (let k = 0; k < particle_count; k++) {
         let p = particles[i][j][k];
         p.v.add(p5.Vector.mult(p.f, DT / p.rho));
         p.pos.add(p5.Vector.mult(p.v, DT));
+        
         if (p.pos.y + H > height) {
           p.v.y *= BOUND_DAMP;
           p.pos.y = height - EPS;
