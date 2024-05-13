@@ -168,15 +168,15 @@ function mouseReleased() {
 }
 
 function doubleClicked() {
-  let radius = H * 2;  // Define the radius of the circle
-  for (let angle = 0; angle < 360; angle += 360 / 50) {  // Increment angle to form a circle
-    let x = mouseX + radius * cos(radians(angle));  // Calculate x position
-    let y = mouseY + radius * sin(radians(angle));  // Calculate y position
+  let radius = H * 2;  
+  for (let angle = 0; angle < 360; angle += 360 / 50) { 
+    let x = mouseX + radius * cos(radians(angle)); 
+    let y = mouseY + radius * sin(radians(angle));  
     let temp = new Particle(x, y);
     let row = Math.floor(y / (3 * H)) + 1;
     let col = Math.floor(x / (3 * H)) + 1;
     if (row >= 0 && col >= 0 && row < particles.length && col < particles[row].length) {
-      particles[row][col].push(temp);  // Add particle if it's within the grid bounds
+      particles[row][col].push(temp);  
     }
   }
 }
