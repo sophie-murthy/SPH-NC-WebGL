@@ -43,19 +43,19 @@ function setup() {
   sliderContainer.id("slider-container");
 
   // Create sliders
-  let gravityLabel = createP("Gravity");
+  let gravityLabel = createP("Gravity Slider (slide to change the gravity)");
   gravityLabel.parent(sliderContainer);
   gravity = createSlider(10, 100, 50, 1);
   gravity.parent(sliderContainer);
   gravity.id("gravity-slider");
 
-  let gasConstLabel = createP("Gas Constant");
+  let gasConstLabel = createP("Gas Constant (slide to change the gas constant)");
   gasConstLabel.parent(sliderContainer);
   gasConstSlider = createSlider(200, 3000, 2000, 10);
   gasConstSlider.parent(sliderContainer);
   gasConstSlider.id("gasConst-slider");
 
-  let viscLabel = createP("Visc Constant");
+  let viscLabel = createP("Visc Constant (slide to change the visc constant)");
   viscLabel.parent(sliderContainer);
   viscSlider = createSlider(1, 1000, 100, 1);
   viscSlider.parent(sliderContainer);
@@ -85,16 +85,7 @@ function draw() {
   G = createVector(0, gravity.value());
   GAS_CONST = gasConstSlider.value();
   VISC = viscSlider.value();
-  text("FPS:" + frameRate(), 20, 20);
-  // text(
-  //   // "Press R to toggle Render and Space to add particles. You can drag stuff too",
-  //   "Press Space to add more particles in the mouse's postion, and you can use mouse drag particles",
-  //   20,
-  //   40
-  // );
-  // text("User the slider change gravity in the canvas", 20, 60);
-  // text("User the second slider change Gas Constant in the canvas", 20, 80);
-  // text("User the second slider change Visc in the canvas", 20, 100);
+
   densityPressure();
   forces();
   integrate();
@@ -120,25 +111,6 @@ function mousePressed() {
   lockChamber.push(temp);
 
 
-
-  /*
-  mouseDown = true;
-  lockChamber = [];
-
-  num_row = particles.length;
-  num_col = particles[0].length;
-  for (let i = 1; i < num_row - 1; i++) {
-    for (let j = 1; j < num_col - 1; j++) {
-      for (let p of particles[i][j]) {
-        if (dist(p.pos.x, p.pos.y, mouseX, mouseY) < 50) {
-          p.scu = p5.Vector.sub(p.pos, createVector(mouseX, mouseY));
-          lockChamber.push(p);
-        }
-      }
-    }
-  }
-  */
-}
 
 function mouseDragged() {
 
