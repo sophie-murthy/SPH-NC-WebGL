@@ -118,13 +118,13 @@ function forces() {
             }
           }
         }
-        let fgrav = p5.Vector.mult(G, MASS / p.rho);
+        let force_gravity = p5.Vector.mult(G, MASS / p.rho);
 
         let fo = createVector();
 
         fo.add(force_press);
         fo.add(force_visc);
-        fo.add(fgrav);
+        fo.add(force_gravity);
         p.f = fo;
       }
     }
@@ -146,7 +146,7 @@ function integrate() {
         let p = particles[i][j][k];
         p.v.add(p5.Vector.mult(p.f, DT / p.rho));
         p.pos.add(p5.Vector.mult(p.v, DT));
-        
+
         if (p.pos.y + H > height) {
           p.v.y *= BOUND_DAMP;
           p.pos.y = height - EPS;
